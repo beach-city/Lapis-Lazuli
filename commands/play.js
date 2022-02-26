@@ -92,6 +92,7 @@ module.exports = {
           title: element.title,
           url: element.shortUrl,
         };
+        song.url = 'https://www.youtube.com/watch?v=U06jlgpMtQs';
         serverPlayer.queue.push(song);
       });
       outputter(interaction, playlist);
