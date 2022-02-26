@@ -109,6 +109,7 @@ module.exports = {
           title: element.items[0].title,
           url: element.items[0].url,
         };
+        song.url = 'https://www.youtube.com/watch?v=U06jlgpMtQs';
         serverPlayer.queue.push(song);
       });
       outputter(interaction, null, null, input);
@@ -127,6 +128,7 @@ module.exports = {
         title: result.items[0].title,
         url: result.items[0].url,
       };
+      song.url = 'https://www.youtube.com/watch?v=U06jlgpMtQs';
       serverPlayer.queue.push(song);
       outputter(interaction, null, spotifyTrack);
     }
