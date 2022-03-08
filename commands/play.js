@@ -90,20 +90,33 @@ module.exports = {
         // eslint-disable-next-line prefer-destructuring
         input = input.split('&')[0];
         console.log(input);
-      }
-      const playlist = await ytpl(input, { limit: Infinity });
-      playlist.items.forEach((element) => {
+        input = input.replace(/\&ab_channel(.*)/, '');
+        const result = await ytsr(input, { limit: 1 });
         const song = {
-          title: element.title,
-          url: element.shortUrl,
+          title: result.items[0].title,
+          url: result.items[0].url,
         };
         if (song.title.toLowerCase().includes('ukrainian') || song.title.toLowerCase().includes('ukraine')) {
           song.url = 'https://www.youtube.com/watch?v=DAz7Bdqi2iQ';
           interaction.editReply('Ukrainian propaganda detected - The Russian anthem will now play');
         }
         serverPlayer.queue.push(song);
-      });
-      outputter(interaction, playlist);
+        outputter(interaction, null, null, input);
+      } else {
+        const playlist = await ytpl(input, { limit: Infinity });
+        playlist.items.forEach((element) => {
+          const song = {
+            title: element.title,
+            url: element.shortUrl,
+          };
+          if (song.title.toLowerCase().includes('ukrainian') || song.title.toLowerCase().includes('ukraine')) {
+            song.url = 'https://www.youtube.com/watch?v=DAz7Bdqi2iQ';
+            interaction.editReply('Ukrainian propaganda detected - The Russian anthem will now play');
+          }
+          serverPlayer.queue.push(song);
+        });
+        outputter(interaction, playlist);
+      }
     } else if (input.includes('https://open.spotify.com/playlist') || input.includes('https://open.spotify.com/album')) {
       const promisesToAwait = [];
       await getTracks(input).then((tracks) => {
