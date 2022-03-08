@@ -86,6 +86,11 @@ module.exports = {
       });
     }
     if (input.includes('&list=')) {
+      if (input.includes('&list=LL')) {
+        // eslint-disable-next-line prefer-destructuring
+        input = input.split('&')[0];
+        console.log(input);
+      }
       const playlist = await ytpl(input, { limit: Infinity });
       playlist.items.forEach((element) => {
         const song = {
