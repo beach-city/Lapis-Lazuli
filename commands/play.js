@@ -96,10 +96,6 @@ module.exports = {
           title: result.items[0].title,
           url: result.items[0].url,
         };
-        if (song.title.toLowerCase().includes('ukrainian') || song.title.toLowerCase().includes('ukraine')) {
-          song.url = 'https://www.youtube.com/watch?v=DAz7Bdqi2iQ';
-          interaction.editReply('Ukrainian propaganda detected - The Russian anthem will now play');
-        }
         serverPlayer.queue.push(song);
         outputter(interaction, null, null, input);
       } else {
@@ -109,10 +105,6 @@ module.exports = {
             title: element.title,
             url: element.shortUrl,
           };
-          if (song.title.toLowerCase().includes('ukrainian') || song.title.toLowerCase().includes('ukraine')) {
-            song.url = 'https://www.youtube.com/watch?v=DAz7Bdqi2iQ';
-            interaction.editReply('Ukrainian propaganda detected - The Russian anthem will now play');
-          }
           serverPlayer.queue.push(song);
         });
         outputter(interaction, playlist);
@@ -130,10 +122,6 @@ module.exports = {
           title: element.items[0].title,
           url: element.items[0].url,
         };
-        if (song.title.toLowerCase().includes('ukrainian') || song.title.toLowerCase().includes('ukraine')) {
-          song.url = 'https://www.youtube.com/watch?v=DAz7Bdqi2iQ';
-          interaction.editReply('Ukrainian propaganda detected - The Russian anthem will now play');
-        }
         serverPlayer.queue.push(song);
       });
       outputter(interaction, null, null, input);
@@ -152,10 +140,6 @@ module.exports = {
         title: result.items[0].title,
         url: result.items[0].url,
       };
-      if (song.title.toLowerCase().includes('ukrainian') || song.title.toLowerCase().includes('ukraine')) {
-        song.url = 'https://www.youtube.com/watch?v=DAz7Bdqi2iQ';
-        interaction.editReply('Ukrainian propaganda detected - The Russian anthem will now play');
-      }
       serverPlayer.queue.push(song);
       outputter(interaction, null, spotifyTrack);
     }
